@@ -73,6 +73,7 @@ def prep_img_url(art):
 
 
 def article_detail(request, article_name):
+    article_name = unicode(article_name, "utf-8")
     art = Article.objects.get(name=article_name)
     img = prep_img_url(art)
                 
