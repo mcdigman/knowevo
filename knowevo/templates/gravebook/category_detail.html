@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <script src="/knowevo/static/jquery-1.7.2.js" ></script>
+    <script src="/knowevo/static/highcharts.src.js" ></script>
+
+    <title>{{ category_name }}</title>
+    {% if evo_chart %}
+      {% load chartit %}
+      {{ evo_chart|load_charts:"cat_evo_container" }}
+    {% endif %}
+
+  </head>
+  <body>
+    {% include "gravebook/search_header.html" %}
+
+    <div id="cat_evo_container"></div>
+
+    <div class="people_div">
+      <span class="people" onclick="loadArticleData('cats_div')">Show category members with matches</span>
+      <div id="cats_div"></div>
+      </div>
+  </body>
+</html>
