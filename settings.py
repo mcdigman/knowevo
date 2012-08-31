@@ -3,9 +3,9 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-USER_LOCALHOST = False
+USER_LOCALHOST = True
 if USER_LOCALHOST:
-    homepath = 'gabrovski'
+    homepath = 'aaronkoenig'
 else:
     homepath = 'sasho'
 
@@ -17,14 +17,14 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'postgresql_psycopg2', #'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', #'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'knowevo',#'/home/gabrovski/cs/knowevo/db.sqlite',                      # Or path to database file if using sqlite3.
-        'USER': 'knowevo',                      # Not used with sqlite3.
-        'PASSWORD': '12345c7890',                  # Not used with sqlite3.
-        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
+        'USER': 'postgres',                      # Not used with sqlite3.
+        'PASSWORD': 'robertelee',                  # Not used with sqlite3.
+        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
         'OPTIONS': {
-            'autocommit':True,
+            'autocommit':False,
             },
         'TEST_NAME': 'test_knowevo',
     }
@@ -55,7 +55,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '/home/'+homepath+'/cs/knowevo/static/pngs/'
+MEDIA_ROOT = '/Users/'+homepath+'/Desktop/knowevo/static/pngs/'
 #'/home/sasho/cs/knowevo/static/pngs/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
@@ -67,7 +67,7 @@ MEDIA_URL = '/knowevo/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/home/'+homepath+'/cs/knowevo/static/stroot/'
+STATIC_ROOT = '/Users/'+homepath+'/Desktop/knowevo/static/stroot/'
 #'/home/sasho/cs/knowevo/static/stroot/'
 
 # URL prefix for static files.
@@ -80,14 +80,14 @@ else:
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
-ADMIN_MEDIA_PREFIX = '/static/admin/'
+ADMIN_MEDIA_PREFIX = 'static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
     #'/home/sasho/cs/knowevo/static/js',
-    '/home/'+homepath+'/cs/knowevo/static/js',
-    '/home/'+homepath+'/cs/knowevo/static/java',
-
+    '/Users/'+homepath+'/Desktop/knowevo/static/js',
+    '/Users/'+homepath+'/Desktop/knowevo/static/java',
+    '/Users/'+homepath+'/Desktop/knowevo/static/css',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -123,7 +123,7 @@ ROOT_URLCONF = 'knowevo.urls'
 
 TEMPLATE_DIRS = (
     #'/home/sasho/cs/knowevo/templates/',
-    '/home/'+homepath+'/cs/knowevo/templates/',
+    '/Users/'+homepath+'/Desktop/knowevo/templates/',
 
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
@@ -170,3 +170,6 @@ LOGGING = {
         },
     }
 }
+
+import dj_database_url
+DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}

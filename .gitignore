@@ -23,3 +23,5 @@ rsch/*.py
 migrations/
 *.gz
 java/knowevo2/nbproject/private/
+venv
+*.pyc
