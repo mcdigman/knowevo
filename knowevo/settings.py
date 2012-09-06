@@ -1,7 +1,10 @@
+import os.path
+
 # Django settings for knowevo project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+PROJECT_DIR = os.path.realpath(os.path.dirname(__file__))
 
 USER_LOCALHOST = True
 if USER_LOCALHOST:
@@ -55,8 +58,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'knowevo/static/pngs/')
+MEDIA_ROOT = PROJECT_DIR + '/static/pngs/'
 #'/home/sasho/cs/knowevo/static/pngs/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
@@ -68,7 +70,7 @@ MEDIA_URL = '/knowevo/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'knowevo/static/stroot/')
+STATIC_ROOT = PROJECT_DIR + '/static/stroot/'
 #'/home/sasho/cs/knowevo/static/stroot/'
 
 # URL prefix for static files.
@@ -81,14 +83,14 @@ else:
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
-ADMIN_MEDIA_PREFIX = 'static/admin/'
+ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
     #'/home/sasho/cs/knowevo/static/js',
-    os.path.join(PROJECT_ROOT, 'knowevo/static/js')
-    os.path.join(PROJECT_ROOT, 'knowevo/static/java')
-    os.path.join(PROJECT_ROOT, 'knowevo/static/css')
+    PROJECT_DIR + '/static/js/',
+    PROJECT_DIR + '/static/java/',
+    PROJECT_DIR + '/static/css/',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -124,7 +126,7 @@ ROOT_URLCONF = 'knowevo.urls'
 
 TEMPLATE_DIRS = (
     #'/home/sasho/cs/knowevo/templates/',
-    os.path.join(PROJECT_ROOT, 'knowevo/templates/')
+    PROJECT_DIR + '/templates/'
 
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
