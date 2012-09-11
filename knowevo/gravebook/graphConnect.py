@@ -1,5 +1,5 @@
 import socket, os
-import settings
+import knowevo.settings
 
 
 HOST, PORT = 'localhost', 62541;
