@@ -1,5 +1,5 @@
 import socket, os
-from settings import MEDIA_ROOT
+from knowevo.settings import MEDIA_ROOT
 
 HOST, PORT = 'localhost', 62541;
 
