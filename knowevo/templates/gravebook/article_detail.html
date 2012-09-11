@@ -1,0 +1,97 @@
+<html>
+  <head>
+    <script src="/knowevo/static/jquery-1.7.2.js" ></script>
+    <script src="/knowevo/static/highcharts.src.js" ></script>
+
+    <title>{{ article.name }}</title>
+    {% if evo_chart %}
+      {% load chartit %}
+      {{ evo_chart|load_charts:"evo_container" }}
+    {% endif %}
+  </head>
+  <body>
+    
+    {% include "gravebook/search_header.html" %}
+
+    <div class="front_page">
+      <h2 class="title">{{ article.name }} ({{ article.birth }} - {{ article.death }})</h2>
+      
+      <div class="front_content">
+	<a href="http://en.wikipedia.org/wiki/{{ article.name }}">
+	  {% if image %}
+	  <img src="{{ image }}" class="front_image" alt="Image could not be loaded from Wikipedia"/>
+	  {% else %}
+	  <span class="front_image">No image found on Wikipedia</span>
+	  {% endif %}
+	</a>
+	<div id="evo_container"></div>
+      </div>
+    </div>
+
+    <div id="spring_container"> </div>
+
+    {% if matches.count > 1 %}
+    <div class="people_div">
+      <span class="people">Appearance in Encyclopedia Britannica</span>
+      <table class="people other_ed" border="1">
+	<tr>
+	  {% for match in matches %}
+	  {% if match.art_ed != 1000 %}
+	  <th class="other_ed_th">Edition {{ match.art_ed }}</th>
+	  {% endif %}
+	  {% endfor %}
+	</tr>
+
+	<tr>
+	  {% for match in matches %}
+	  {% if match.art_ed != 1000 %}
+	  <td class="other_ed_td">{{ match.get_name }}</td>
+	  {% endif %}
+	  {% endfor %}
+	</tr>
+      </table>
+    </div>
+    {% endif %}
+
+    <div class="people_div">
+      <span class="people" id="text_span">Available text</span>
+      {% for match in matches %}
+      {% if match.art_ed != 1000 %}
+      <span class="people text_detail" onclick="loadArticleData('text_div','_{{ match.art_ed }}')">
+	Edition {{ match.art_ed }}
+      </span>
+      {% endif %}
+      {% endfor %}
+      <span class="people text_detail" onclick="loadArticleData('text_div','_1000')">Wikipedia</span>
+
+      <div id="text_div"></div>
+    </div>
+    
+    <div class="people_div">
+      <span class="people" onclick="loadArticleData('peers_div')">Show {{ article.name }}'s peers</span>
+      <div id="peers_div"></div>
+    </div>
+
+    <div class="people_div">
+      <span class="people" onclick="loadArticleData('springbox_div')">Visualize {{ article.name }}'s Peers</span>
+      <div id="springbox_div"></div>
+    </div>
+
+    <div class="people_div">
+      <span class="people" onclick="loadArticleData('influenced_by_div')">Show who influenced {{ article.name }}</span>
+      <div id="influenced_by_div"></div>
+    </div>
+
+    <div class="people_div">
+      <span class="people" onclick="loadArticleData('influences_div')">Show who was influenced by {{ article.name }}</span>
+      <div id="influences_div"></div>
+    </div>
+
+    <div class="people_div">
+      <span class="people" onclick="loadArticleData('categories_div')">Show {{ article.name }}'s categories</span>
+      <div id="categories_div"></div>
+    </div>
+
+    
+  </body>
+</html>
