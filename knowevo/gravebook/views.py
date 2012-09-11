@@ -6,7 +6,7 @@ from django.http import HttpResponse
 
 #from incunabula.models import Article as IArticle
 #from incunabula.views import get_master_alist
-
+import settings
 
 import gravebook.graphConnect as gcon
 from spring.timeser import prep_time_series_chart
