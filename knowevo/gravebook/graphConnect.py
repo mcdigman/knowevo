@@ -1,5 +1,6 @@
 import socket, os
-from settings import MEDIA_ROOT
+import settings
+
 
 HOST, PORT = 'localhost', 62541;
 
